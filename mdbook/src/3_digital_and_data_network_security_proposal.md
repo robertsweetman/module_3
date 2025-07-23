@@ -11,3 +11,13 @@
 
 -->
 
+<!-- MARKING RUBRIC
+
+DESIGN A SIMPLE DIGITAL AND/OR DATA NETWORK
+* Develop a well thought out digital and/or data network design based on industry standards and regulations
+* INCLUDE concise explanations of the design principals and considerations for...
+  * building a secure digital and/or data network with additional insights and examples
+
+THIS APPLIES TO CURRENT_STATE_EVALUATION also
+
+-->
