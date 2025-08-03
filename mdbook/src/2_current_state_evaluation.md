@@ -2,14 +2,62 @@
 
 ## Endpoint Inventory
 
+Since our application is cloud-based, primarily using serverless functions, we have some unique considerations that aren't 
+
+TODO: 
+- NETWORK DIAGRAM (current state)
+  - Are there any automation tools that will WORK and produce a diagram from terraform automatically??
+  - https://github.com/patrickchugh/terravision
+  - pluralith
+  - terraform graph - run command - hand it to something else? Graphviz?
+  - terraform visual, can run in CICD
+
+- ENDPOINT LIST
+ - ROLE
+ - RISK/SIGNIFICANCE
+
+
+IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
+ - JUST THE DIAGRAM AND ENDPOINT INVENTORY HERE
+ - IN no particular order
+
+### AWS RDS (PostgreSQL) db connection
+Open to the internet for ease of development from Windows machine using PgAdmin 4 application. REF: 
+TODO: 
+ - Add link to docs
+ - Find out how encryption works to/from here
+
+
+
+
+
+
 <!-- 
-* Create an Inventory of accessible network endpointscategorized by role, operating system and significance, using advanced scanning tools
+* Create an Inventory of accessible network endpoints categorized by role, operating system and significance, using advanced scanning tools
 
 * Create a basic network diagram that can include components like routers, switches, servers and workstations
-
 -->
 
 ## Cybersecurity Analysis
+
+TODO: 
+- AWS IAM
+ - BEST PRACTICES ARE WHAT?
+- TOOLS ADVANTAGES AND DISADVANTAGES
+- THREAT ANALYSIS 
+ - ESPECIALLY IN RELATION TO DATA
+ - WHAT SCANNING TOOLS APPLY HERE?
+
+* "well architected framework"
+* AWS security advisor
+* Trivy security analysis for Terraform
+* Other 'best practice' frameworks for cloud/serverless
+* WHAT SECURITY FRAMEWORKS APPLY TO THE AI COMPONENT
+
+IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
+
+### AWS RDS (PostgreSQL) db connection
+Open to the internet, only protected via username/password from local PC which is clearly bad. High risk of exposure vs. convenience of being able to run queries locally.
 
 <!-- 
 * Provide an overview of existing accessible and relevant protection mechanisms such as anti-virus, anti-malware and EDR systems, encryption and access controls
@@ -37,6 +85,5 @@ EVALUATE A DIGITAL OR DATA NETWORK FOR COMMON VULNERABILITIES AND RISKS
   * additional insights and examples 
 
 All this needs to be evidenced in this section
-
 
 -->

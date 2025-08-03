@@ -1,6 +1,6 @@
 # Propsal and Impact Story <!-- 300 words -->
 
-## Qusantifying Impact
+## Quantifying Impact
 
 <!-- 
 * Develop an impact story that illustrates the ROI of propose security enhancements. Highlight potential cost savings, revenue improvements and the enablement of other critical organizational functions.
