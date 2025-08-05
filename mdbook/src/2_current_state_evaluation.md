@@ -2,7 +2,36 @@
 
 ## Endpoint Inventory
 
-Since our application is cloud-based, primarily using serverless functions, we have some unique considerations that aren't 
+TODO: Insert current state diagram here
+
+Our application is entirely cloud based (on AWS) and consists primarily of AWS Lambda (serverless) functions and AWS RDS using PostgreSQL. 
+
+There 'are' a number of endpoints however as well as a function that sends emails to registered addresses. We still have to prevent things like unauthorised access to S3 buckets, the PostgreSQL db and un-authorised AWS Lambda executions.
+
+### AWS RDS (PostgreSQL) db connection
+
+
+### AWS S3
+Used as an upload target for AWS Lambda's built via GitHub pipelines as well as the host for the Terraform state file. 
+
+Having the state file in S3 allows for multiple developers to make changes to a common state file, rather than maintaining their own local state file copy. 
+
+
+### AWS Lambda functions
+
+#### Postgres-dataload
+
+#### pdf processor
+
+#### ml processor
+
+#### ai summary
+
+#### sns
+
+### AWS IAM
+
+
 
 TODO: 
 - NETWORK DIAGRAM (current state)
@@ -54,6 +83,10 @@ MILESTONE 3 - score the likelyhood of a breach vs. a framework.
 
 ## Cybersecurity Analysis
 
+IMPORTANT: What Frameworks of references are we going to use for our CyberSecurity analysis?
+
+Since our application is cloud-based and primarily uses serverless functions we have some things to consider that don't fall in the usual legacy hardware/virtual machine/networking approach.
+
 TODO: 
 - AWS IAM
  - BEST PRACTICES ARE WHAT?
@@ -72,6 +105,15 @@ IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
 
 ### AWS RDS (PostgreSQL) db connection
 Open to the internet, only protected via username/password from local PC which is clearly bad. High risk of exposure vs. convenience of being able to run queries locally.
+
+Open to the internet for ease of development from Windows machine using PgAdmin 4 application. REF: https://www.pgadmin.org/
+TODO: 
+ - Add link to docs
+ - Find out how encryption works to/from here
+
+### AWS S3
+#### AWS Lamda zip files
+#### Terraform State file
 
 <!-- 
 - clear text/issues
