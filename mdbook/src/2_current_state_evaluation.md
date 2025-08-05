@@ -33,7 +33,21 @@ TODO:
 
 
 <!-- 
-* Create an Inventory of accessible network endpoints categorized by role, operating system and significance, using advanced scanning tools
+ * draw IO for network diagram
+ * look at OWASP AI/LLM stuff
+ * explain topology i.e. ALL CLOUD or STAR or something else
+ * what are the key concepts on the diagram
+ * argue for why improvements made, justify decisions
+ * diagram for after, for example
+ * support the WHY with industry best practice
+  * GDPR is that's relevant
+  * CVE's severity etc.
+
+MILESTONE 3 - score the likelyhood of a breach vs. a framework. 
+-->
+
+<!--
+* Create an Inventory of accessible network endpointscategorized by role, operating system and significance, using advanced scanning tools
 
 * Create a basic network diagram that can include components like routers, switches, servers and workstations
 -->
@@ -60,6 +74,10 @@ IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
 Open to the internet, only protected via username/password from local PC which is clearly bad. High risk of exposure vs. convenience of being able to run queries locally.
 
 <!-- 
+- clear text/issues
+-->
+
+<!-- 
 * Provide an overview of existing accessible and relevant protection mechanisms such as anti-virus, anti-malware and EDR systems, encryption and access controls
 
 * Analyse the efficiency of these tools, highlight their advantages and disadvantages
@@ -67,6 +85,8 @@ Open to the internet, only protected via username/password from local PC which i
 * Analyse the effectiveness of protections and IDS/IPS systmes such as firewalls, VPNs, and endpoint protection software.
 
 * Identify areas needing improvement, focusing on deficiencies that could expose endpoints to threats.
+
+* My project is endpoint and data protection, out of the examples
 
 -->
 
