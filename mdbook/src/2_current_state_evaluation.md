@@ -56,10 +56,7 @@ TODO:
  - Add link to docs
  - Find out how encryption works to/from here
 
-
-
-
-
+TODO: Look at the CVE site for the things in the system
 
 <!-- 
  * draw IO for network diagram
