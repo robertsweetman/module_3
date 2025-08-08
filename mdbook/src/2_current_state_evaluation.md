@@ -31,6 +31,7 @@ Having the state file in S3 allows for multiple developers to make changes to a 
 
 ### AWS IAM
 
+https://genai.owasp.org/llm-top-10/ <-- use as a reference for analysis
 
 
 TODO: 
