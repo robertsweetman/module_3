@@ -1,5 +1,18 @@
 # Digital and Data Network Security Proposal <!-- 1200 words -->
 
+Talk about the serverless/cloud shared responsibility model here
+
+## Mandatory user access/event logging
+
+## Application/serverless logging to detect when something is going wrong
+
+## Code quality review
+
+## Pipeline automation in Terraform scanning for CVE's
+
+INCLUDE COSTS OF DISRUPTION
+
+
 <!-- 
 * Based on your analysis, propose strategic enhancements to address identified vulnerabilities
 

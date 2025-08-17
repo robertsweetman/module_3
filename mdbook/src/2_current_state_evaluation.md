@@ -4,12 +4,18 @@
 
 ![Initial Application Diagram](./images/unfinished.drawio.png)
 
+TODO: Talk about overall architecture, is this bus/queue based or hub and spoke or something else?
+TODO: How resilient is it? How are failures handled? Use the correct terminology - serverless queue etc.
+
 Our application is entirely cloud based (on AWS) and consists primarily of AWS Lambda (serverless) functions and AWS RDS using PostgreSQL. 
 
 It's worth mentioning that some architectural approaches, like using serverless functions, remove whole classes of issues and vulnerabilities. 
 
 TODO: _Get hold of a reference of some sort to back this up_ 
 TODO: _At the moment this doesn't 'appear' to be the case, according to the literature I've found_
+TODO: _add arguments WHY something is better than EC2 with sources to back those up_
+TODO: _mainly let's say from a cost point of view, especially since it's execution based_
+TODO: _pros vs. cons & limitations_
 
 However, while we aren't having to manage and patch operating systems other serverless specific issues need to be considered.
 
@@ -83,6 +89,10 @@ TODO:
  - Find out how encryption works to/from here
 
 TODO: Look at the CVE site for the things in the system
+
+### Anthropic public endpoing API connection
+TODO: How is this secured?
+
 
 <!-- 
  * draw IO for network diagram
