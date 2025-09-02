@@ -1,5 +1,10 @@
 # Propsal and Impact Story <!-- 300 words -->
 
+Suggestion in the proposal
+- use a pentesting framework 
+  - which one/why
+  - others, pros-cons
+
 ## Quantifying Impact
 <!-- 
 WHAT ARE THE RISKS IF YOU DON'T DO IT vs. IF YOU DO
