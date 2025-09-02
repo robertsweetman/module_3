@@ -108,6 +108,8 @@ MILESTONE 3 - score the likelyhood of a breach vs. a framework.
 
 TODO: Run wireshark on the coms to PgAdmin 4 to the database
 
+TODO: List CVE/vulnerability analysis tools that could be used in this case, including AWS Security hub vulnerability list.
+
 IMPORTANT: What Frameworks of references are we going to use for our CyberSecurity analysis?
 
 Since our application is cloud-based and primarily uses serverless functions we have some things to consider that don't fall in the usual legacy hardware/virtual machine/networking approach.
@@ -128,6 +130,7 @@ TODO:
 
 https://www.cvedetails.com/vendor/336/ <- postgreSQL
 https://medium.com/@simardeep.oberoi/unveiling-github-actions-vulnerabilities-a-comprehensive-technical-guide-to-attack-vectors-and-6a26a83e9fb2
+https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
 
 IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
 
