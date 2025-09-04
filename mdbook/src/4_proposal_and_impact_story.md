@@ -10,6 +10,7 @@ Suggestion in the proposal
 WHAT ARE THE RISKS IF YOU DON'T DO IT vs. IF YOU DO
 IMPORTANT: Put an actual money value on this
 IMPORTANT: look at feedback on Module 2 for this as well
+IMPORTANT: INCLUDE COSTS OF DISRUPTION
 -->
 
 <!-- 

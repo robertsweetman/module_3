@@ -4,13 +4,16 @@ Talk about the serverless/cloud shared responsibility model here
 
 ## Mandatory user access/event logging
 
+- do this and even remove the db/need to update it
+  - only IF the logging can be relied upon
+
 ## Application/serverless logging to detect when something is going wrong
 
 ## Code quality review
 
 ## Pipeline automation in Terraform scanning for CVE's
 
-INCLUDE COSTS OF DISRUPTION
+- see all the dependency issues in the Secure Serverless architecture docs
 
 
 <!-- 

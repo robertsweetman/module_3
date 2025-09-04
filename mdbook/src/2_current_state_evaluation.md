@@ -1,23 +1,27 @@
 # Evaluation of Current State <!-- 1000 words -->
 
+Evaluating security for a function based serverless application is different than a traditional hub/spoke or point-to-point network because the essential platform is entirely different. As can be seen from the figure below, a serverless architecture means developers focus on the application while everything else is abstracted away or become the responsibility of the cloud platform provider.
+
+![Serverless Shared Responsibility](./images/Serverless_Shared_Responsibility.png)
+Figure 1 : Serverless Responsibility (Cloud Security Alliance 2023:11)
+
+Now, there is still _shared_ responsibility because although many vulnerabilities have been removed there are new issues that arise that are unique to a serverless approach.
+
+![Setup and Deployment Stage Threats](./images/Setup_Deployment_Stage_Threats.png)
+Figure 2 : Setup and Deployment Stage Threats (Cloud Security Alliance 2023:20)
+
+For example, if we happen to commit secrets to code that would be an extreme "deployment stage" threat that could expose our application to being taken over. You certainly couldn't pass the buck to the cloud provider for this.
+
+Serverless applications do have additional advantages over other approaches, primarily cost. 
+
+They are only charged on a "per-execution" basis so having a data-pipeline run each day and possibly instansiate a dozen functions and destroy them after a few minutes means the daily running cost of this application is less than $1 per day.
+
 ## Endpoint Inventory
 
-![Initial Application Diagram](./images/unfinished.drawio.png)
+![Initial Application Diagram](./images/initial-state.drawio.png)
+Figure 3: Initial Application Diagram
 
-TODO: Talk about overall architecture, is this bus/queue based or hub and spoke or something else?
-TODO: How resilient is it? How are failures handled? Use the correct terminology - serverless queue etc.
-
-Our application is entirely cloud based (on AWS) and consists primarily of AWS Lambda (serverless) functions and AWS RDS using PostgreSQL. 
-
-It's worth mentioning that some architectural approaches, like using serverless functions, remove whole classes of issues and vulnerabilities. 
-
-TODO: _Get hold of a reference of some sort to back this up_ 
-TODO: _At the moment this doesn't 'appear' to be the case, according to the literature I've found_
-TODO: _add arguments WHY something is better than EC2 with sources to back those up_
-TODO: _mainly let's say from a cost point of view, especially since it's execution based_
-TODO: _pros vs. cons & limitations_
-
-However, while we aren't having to manage and patch operating systems other serverless specific issues need to be considered.
+Our application is entirely cloud based and consists primarily of AWS Lambda (serverless) functions, an event-driven chain and PostgreSQL as a data store plus state record.  
 
 ### AWS RDS (PostgreSQL) db connection
 The first serverless function `postgres_dataload` goes and gets the latest electronic tenders. Anything this function retrieves is stored in the RDS PostgreSQL database. 
