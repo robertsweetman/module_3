@@ -1,16 +1,18 @@
 # Propsal and Impact Story <!-- 300 words -->
 
-Suggestion in the proposal
-- use a pentesting framework 
-  - which one/why
-  - others, pros-cons
-
 ## Quantifying Impact
+
+### PostgreSQL impact story 
+- all the ways that db takeover can be missused
+- cost implications
+- trust lost etc. 
+NOTE: Vulnerable to brute force attacks - remove public access entirely
+
+
 <!-- 
 WHAT ARE THE RISKS IF YOU DON'T DO IT vs. IF YOU DO
 IMPORTANT: Put an actual money value on this
 IMPORTANT: look at feedback on Module 2 for this as well
-IMPORTANT: INCLUDE COSTS OF DISRUPTION
 -->
 
 <!-- 

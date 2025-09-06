@@ -130,9 +130,9 @@ Using these outcomes helps non-technical sponsors understand the current state o
 | **AWS RDS (PostgreSQL)** | Data storage and state management | • Unauthorized data access<br/>• Data manipulation/corruption<br/>• Credential exposure<br/>• Public internet exposure | **Not Achieved** | Complete tender data compromise, competitive intelligence loss |
 | **GitHub Action Pipelines** | CI/CD deployment and secrets management | • Secret exposure in logs<br/>• Pipeline injection attacks<br/>• Unauthorized deployments<br/> | **Partially Achieved** | Full AWS environment takeover, code tampering, infrastructure manipulation, backdoor deployment |
 | **AWS S3 Bucket** | Terraform state and Lambda code storage | • Terraform state exposure<br/>• Lambda code tampering<br/>• Unauthorized object access<br/>• Bucket policy misconfiguration | **Achieved** | Infrastructure secrets exposure, code intellectual property theft, deployment manipulation |
-| **AWS Lambda Functions** | Core business logic processing | • Function injection attacks<br/>• Environment variable exposure<br/>• Excessive permissions<br/>• Dependency vulnerabilities | **Achieved** | Business logic bypass, data processing manipulation, service disruption |
+| **AWS Lambda Functions** | Core business logic processing | • Function injection attacks<br/>• Environment variable exposure<br/>• Excessive permissions<br/>• Dependency vulnerabilities | **Partially Achieved** | Business logic bypass, data processing manipulation, service disruption |
 | **AWS SQS Queues** | Inter-service communication | • Message tampering<br/>• Queue flooding (DoS)<br/>• Dead letter queue exposure<br/>• Cross-service privilege escalation | **Achieved** | Data pipeline disruption, message manipulation, service degradation |
-| **Anthropic Claude API** | AI/ML text analysis and summarization | • Prompt injection attacks<br/>• API key compromise<br/>• Model poisoning via crafted inputs | **Partially Achieved** | Tender data exposure to third party, AI system manipulation |
+| **Anthropic Claude API** | AI/ML text analysis and summarization | • Prompt injection attacks<br/>• API key compromise<br/>• Model poisoning via crafted inputs | **Achieved** | Tender data exposure to third party, AI system manipulation |
 | **AWS SNS** | Notification and alerting system | • Email spoofing/phishing<br/>• Unauthorized subscription access<br/>• Message interception<br/>• Service abuse for spam | **Achieved** | False notifications, information disclosure via email, social engineering attacks |
 | **AWS IAM** | Identity and access management | • Privilege escalation<br/>• Role assumption abuse<br/>• Policy misconfigurations<br/>• Credential exposure | **Achieved** | Complete AWS account takeover, cross-service access, data exfiltration, resource manipulation |
 
@@ -156,7 +156,9 @@ Assessing the CI/CD/GitHub pipeline as **Partially Achieved** is actually a bit 
 
 Unfortunately it's not all about secrets here. 
 
-There might be issues within the resources deployed by Terraform, again sitting within their configuration, as well as the actual Rust code or the crates (libraries) the Lambdas are built from.
+There might be issues within the resources deployed by Terraform, again sitting within their configuration, as well as the actual Rust code or the crates (libraries) the Lambdas are built from. We will get into mitigation steps for these issues in the next section though.
+
+We can also make some architectural choices to mitigate issues further and also address "platform risk" (REF: https://www.startupillustrated.com/Archive/Platform-Risk/) which is the over-reliance on a particular platform or service in order for the application to function.
 
 
 TODO: 
@@ -174,7 +176,9 @@ TODO:
 * WHAT SECURITY FRAMEWORKS APPLY TO THE AI COMPONENT
 
 https://www.cvedetails.com/vendor/336/ <- postgreSQL
+
 https://medium.com/@simardeep.oberoi/unveiling-github-actions-vulnerabilities-a-comprehensive-technical-guide-to-attack-vectors-and-6a26a83e9fb2
+
 https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
 
 IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
