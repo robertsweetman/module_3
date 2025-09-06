@@ -10,15 +10,15 @@ Now, there is still _shared_ responsibility because although many vulnerabilitie
 ![Setup and Deployment Stage Threats](./images/Setup_Deployment_Stage_Threats.png)
 Figure 2 : Setup and Deployment Stage Threats (Cloud Security Alliance 2023:20)
 
-For example, if we happen to commit secrets to code that would be an extreme "deployment stage" threat that could expose our application to being taken over. You certainly couldn't pass the buck to the cloud provider for this.
+For example, if we happen to commit secrets to code that would be an extreme "deployment stage" threat that could expose our application to being taken over. You certainly couldn't expect the cloud provider to take responsibility for this mistake.
 
 Serverless applications do have additional advantages over other approaches, primarily cost. 
 
-They are only charged on a "per-execution" basis so having a data-pipeline run each day and possibly instansiate a dozen functions and destroy them after a few minutes means the daily running cost of this application is less than $1 per day.
+They are only charged on a "per-execution" basis so having a data-pipeline run each day and possibly instansiate a dozen functions and destroy them after a few minutes means the running cost of this application is less than $1 per day.
 
 ## Endpoint Inventory
 
-![Initial Application Diagram](./images/initial-state.drawio.png)
+![Initial Application Diagram](./images/initial-state-final.drawio.png)
 Figure 3: Initial Application Diagram
 
 Our application is entirely cloud based and consists primarily of AWS Lambda (serverless) functions, an event-driven chain and PostgreSQL as a data store plus state record.  
@@ -26,10 +26,19 @@ Our application is entirely cloud based and consists primarily of AWS Lambda (se
 ### AWS RDS (PostgreSQL) db connection
 The first serverless function `postgres_dataload` goes and gets the latest electronic tenders. Anything this function retrieves is stored in the RDS PostgreSQL database. 
 
-The database is updated by subsequent lambda functions as the tender is processed for potentially being something that should be responded to or not. The purpose of the database is to keep a record of what has been examined by the machine learning lambda, potentially as a source of retraining the ML component and shows where in the analysis pipeline a tender is.
+The database is updated by subsequent lambda functions as the tender information passes through the ML/AI pipeline. The database stores a record of what has happened at each Lambda step and is used for debugging issues with the data pipeline. In future it could also be used as a source for further ML improvements via re-inforcement learning or to expand the amount of training data on which to retrain the model
+
+Open to the internet for ease of development from Windows machine using PgAdmin 4 application. REF: 
+TODO: 
+ - Add link to docs
+ - Find out how encryption works to/from here
+
+TODO: Look at the CVE site for the things in the system
 
 ### GitHub action pipelines
-These are used to deploy Terraform defined resources into AWS and also to build the AWS Lambdas (in Rust) and upload them to AWS S3.
+Pipelines deploy Terraform defined resources into AWS and also to build the AWS Lambdas (in Rust) and upload them to AWS S3. These pipelines use GitHub action secrets so no password or other sensitive values are ever committed to the GitHub repo for attackers to re-use.
+<!-- TODO: maybe cut this down rather -->
+Every interaction with the AWS resources is run via GitHub action pipelines all the secrets needed to access the environment are stored as GitHub Action Secrets, which are all secured via 2-Factor-Authentication (2FA) linked to the developers GitHub account.
 
 ### AWS S3
 To allow multiple developers to work on the project there is an S3 object location for the Terraform state file. This use of an S3 bucket to hold the Terraform state file is defined in the code.
@@ -39,14 +48,7 @@ Having the state file in S3 allows for multiple developers to make changes to a 
 The S3 bucket is also where the AWS Lambdas are uploaded to when built. Each Lambda function grabs the .zip file from it's bucket location and runs it as part of it's execution process.
 
 ### AWS Lambda functions & queues
-All the Lambda functions exist within the AWS environment and their 'event driven' architecture uses AWS Simple Queue Service to initialize new function instances and post results onto the next queue in the chain.
-
-### AWS Simple Notification Service
-To alert the sales team to a potential bid this service sends an email to a recipient list.
-
-<!-- 
-TODO: need a data flow diagram here to illustrate primarily how data flows through the application
--->
+All the Lambda functions exist within the AWS environment. AWS Simple Queue Service is used to trigger and initialize new function instances when a message they're interested in lands on the queue and each Lambda post results onto the next queue in the chain.
 
 <!-- 
 #### Postgres-dataload
@@ -64,18 +66,16 @@ Takes items off the ai_summary queue and sends their content to a Claude Endpoin
 #### sns
 -->
 
+### Anthropic Claude API endpoint
+The AI Summary Lambda makes a call over the web to Claude's API endpoint via https. It is secured via an API Key that has been stored in the GitHub action secrets that is passed in to the AWS Lambda environment at the point the pipeline runs to build the AI Summary lambda so this can be considered secure. 
+
+### AWS Simple Notification Service
+To alert the sales team to a potential bid this service sends an email to a recipient list. In the development phase all emails have to be validated by the recipient agreeing to receive emails from this particular source. For security, the SNS service uses a real domain account which has also been independently validated/approved by the domain owner via DNS settings.
+
 ### AWS IAM IMPORTANT: DEFINITELY COVER THIS
 
 https://genai.owasp.org/llm-top-10/ <-- use as a reference for analysis
 
-
-TODO: 
-- NETWORK DIAGRAM (current state)
-  - Are there any automation tools that will WORK and produce a diagram from terraform automatically??
-  - https://github.com/patrickchugh/terravision
-  - pluralith
-  - terraform graph - run command - hand it to something else? Graphviz?
-  - terraform visual, can run in CICD
 
 - ENDPOINT LIST
  - ROLE
@@ -85,18 +85,6 @@ TODO:
 IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
  - JUST THE DIAGRAM AND ENDPOINT INVENTORY HERE
  - IN no particular order
-
-### AWS RDS (PostgreSQL) db connection
-Open to the internet for ease of development from Windows machine using PgAdmin 4 application. REF: 
-TODO: 
- - Add link to docs
- - Find out how encryption works to/from here
-
-TODO: Look at the CVE site for the things in the system
-
-### Anthropic public endpoing API connection
-TODO: How is this secured?
-
 
 <!-- 
  * draw IO for network diagram
@@ -120,13 +108,33 @@ MILESTONE 3 - score the likelyhood of a breach vs. a framework.
 
 ## Cybersecurity Analysis
 
-TODO: Run wireshark on the coms to PgAdmin 4 to the database
+Based on the **NCSC Cyber Assessment Framework (CAF)** and **ISO 27001:2022**, this analysis evaluates each endpoint against UK cybersecurity best practices. 
 
-TODO: List CVE/vulnerability analysis tools that could be used in this case, including AWS Security hub vulnerability list.
+The NCSC CAF provides outcome-driven principles specifically designed for UK organisations, while ISO 27001 defines internationally recognised information security management standards.  
 
-IMPORTANT: What Frameworks of references are we going to use for our CyberSecurity analysis?
+For AI/ML we can use the **OWASP LLM Top 10** and **ENISA's AI Cybersecurity Guidelines** which cover risks in AI systems and data processing.
 
-Since our application is cloud-based and primarily uses serverless functions we have some things to consider that don't fall in the usual legacy hardware/virtual machine/networking approach.
+### Risk Assessment Matrix
+
+The following table applies **ISO 27005** risk management methodology for systematic risk identification, analysis, and evaluation, while using **NCSC CAF outcome assessments** to evaluate current security posture. 
+
+**NCSC CAF outcomes** are rated as:
+- **Not Achieved**: Significant security gaps, immediate attention required
+- **Partially Achieved**: Some controls in place but with issues that need addressing
+- **Achieved**: Security effectively implemented and maintained
+
+Using these outcomes helps non-technical sponsors understand the current state of the system with respect to security.
+
+| Endpoint | Role | Primary Risks | NCSC CAF Assessment | Impact if Breached |
+|----------|------|---------------|-------------------|-------------------|
+| **AWS RDS (PostgreSQL)** | Data storage and state management | • Unauthorized data access<br/>• Data manipulation/corruption<br/>• Credential exposure<br/>• Public internet exposure | **Not Achieved** | Complete tender data compromise, competitive intelligence loss |
+| **GitHub Action Pipelines** | CI/CD deployment and secrets management | • Secret exposure in logs<br/>• Pipeline injection attacks<br/>• Unauthorized deployments<br/> | **Partially Achieved** | Full AWS environment takeover, code tampering, infrastructure manipulation, backdoor deployment |
+| **AWS S3 Bucket** | Terraform state and Lambda code storage | • Terraform state exposure<br/>• Lambda code tampering<br/>• Unauthorized object access<br/>• Bucket policy misconfiguration | **Achieved** | Infrastructure secrets exposure, code intellectual property theft, deployment manipulation |
+| **AWS Lambda Functions** | Core business logic processing | • Function injection attacks<br/>• Environment variable exposure<br/>• Excessive permissions<br/>• Dependency vulnerabilities | **Achieved** | Business logic bypass, data processing manipulation, service disruption |
+| **AWS SQS Queues** | Inter-service communication | • Message tampering<br/>• Queue flooding (DoS)<br/>• Dead letter queue exposure<br/>• Cross-service privilege escalation | **Achieved** | Data pipeline disruption, message manipulation, service degradation |
+| **Anthropic Claude API** | AI/ML text analysis and summarization | • Prompt injection attacks<br/>• API key compromise<br/>• Model poisoning via crafted inputs | **Not Achieved** | Tender data exposure to third party, AI system manipulation |
+| **AWS SNS** | Notification and alerting system | • Email spoofing/phishing<br/>• Unauthorized subscription access<br/>• Message interception<br/>• Service abuse for spam | **Achieved** | False notifications, information disclosure via email, social engineering attacks |
+| **AWS IAM** | Identity and access management | • Privilege escalation<br/>• Role assumption abuse<br/>• Policy misconfigurations<br/>• Credential exposure | **Partially Achieved** | Complete AWS account takeover, cross-service access, data exfiltration, resource manipulation |
 
 TODO: 
 - AWS IAM
@@ -137,7 +145,7 @@ TODO:
  - WHAT SCANNING TOOLS APPLY HERE?
 
 * "well architected framework"
-* AWS security advisor
+* AWS security advisor <- I've got a picture for this now
 * Trivy security analysis for Terraform
 * Other 'best practice' frameworks for cloud/serverless
 * WHAT SECURITY FRAMEWORKS APPLY TO THE AI COMPONENT
@@ -164,13 +172,12 @@ TODO:
  - Run wireshark on connections to the db via Pgadmin to see whether or not these are encrypted
 
 ### GitHub Action Pipelines
-Every interaction with the AWS resources is run via GitHub action pipelines all the secrets needed to access the environment are stored as GitHub Action Secrets, which are all secured via 2-Factor-Authentication (2FA) linked to the developers GitHub account.
+
 
 ### AWS S3
 Upload to S3 is only available via the GitHub action pipelines and all the secrets needed to access the environment are stored as GitHub Action Secrets, which are all secured via 2-Factor-Authentication (2FA) 
 
-#### AWS Lamda zip files
-#### Terraform State file
+
 
 
 <!-- 

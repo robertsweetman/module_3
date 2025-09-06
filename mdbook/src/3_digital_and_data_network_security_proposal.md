@@ -15,7 +15,8 @@ Talk about the serverless/cloud shared responsibility model here
 
 - see all the dependency issues in the Secure Serverless architecture docs
 
-
+![Improved Data Security](./images/improved-state.drawio.png)
+Figure 4: Final Application Diagram
 <!-- 
 * Based on your analysis, propose strategic enhancements to address identified vulnerabilities
 
