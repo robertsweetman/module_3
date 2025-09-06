@@ -132,9 +132,32 @@ Using these outcomes helps non-technical sponsors understand the current state o
 | **AWS S3 Bucket** | Terraform state and Lambda code storage | • Terraform state exposure<br/>• Lambda code tampering<br/>• Unauthorized object access<br/>• Bucket policy misconfiguration | **Achieved** | Infrastructure secrets exposure, code intellectual property theft, deployment manipulation |
 | **AWS Lambda Functions** | Core business logic processing | • Function injection attacks<br/>• Environment variable exposure<br/>• Excessive permissions<br/>• Dependency vulnerabilities | **Achieved** | Business logic bypass, data processing manipulation, service disruption |
 | **AWS SQS Queues** | Inter-service communication | • Message tampering<br/>• Queue flooding (DoS)<br/>• Dead letter queue exposure<br/>• Cross-service privilege escalation | **Achieved** | Data pipeline disruption, message manipulation, service degradation |
-| **Anthropic Claude API** | AI/ML text analysis and summarization | • Prompt injection attacks<br/>• API key compromise<br/>• Model poisoning via crafted inputs | **Not Achieved** | Tender data exposure to third party, AI system manipulation |
+| **Anthropic Claude API** | AI/ML text analysis and summarization | • Prompt injection attacks<br/>• API key compromise<br/>• Model poisoning via crafted inputs | **Partially Achieved** | Tender data exposure to third party, AI system manipulation |
 | **AWS SNS** | Notification and alerting system | • Email spoofing/phishing<br/>• Unauthorized subscription access<br/>• Message interception<br/>• Service abuse for spam | **Achieved** | False notifications, information disclosure via email, social engineering attacks |
-| **AWS IAM** | Identity and access management | • Privilege escalation<br/>• Role assumption abuse<br/>• Policy misconfigurations<br/>• Credential exposure | **Partially Achieved** | Complete AWS account takeover, cross-service access, data exfiltration, resource manipulation |
+| **AWS IAM** | Identity and access management | • Privilege escalation<br/>• Role assumption abuse<br/>• Policy misconfigurations<br/>• Credential exposure | **Achieved** | Complete AWS account takeover, cross-service access, data exfiltration, resource manipulation |
+
+Where endpoints are assessed as **Achieved** this is primarily through the use of 2 Factor Authentication both to access AWS and GitHub, especially when it comes to using or storing credentials or secrets. 
+
+We can also use AWS internal tools to help identify or further qualify risks. AWS has their own security review tooling which looks at the underlying infrastructure for issues. 
+
+![AWS Security Review](./images/aws_security_review.png)
+Figure 4: AWS Security Review - _clearly highlights PostgreSQL open port risk_
+
+At the database level, while there are vulnerabilities they are at such a low possibility of being exploited that it's not worth worrying about.
+
+![PostrgeSQL Vulnerabilities](./images/Postgres_Vulnerabilities.png)
+Figure 5: PostgreSQL vulnerabilities
+
+Very low EPSS scores indicate that these exploits are unlikely to be effectively executed in the wild (REF: https://www.first.org/epss/) 
+
+Very often it's security **misconfiguration** that leads to vulnerabilities (REF: https://www.huntress.com/cybersecurity-101/topics/what-is-security-misconfiguration) which is where automated tools like AWS Security Review comes in to play, pointing out common issues that might easily lead to data compromise.
+
+Assessing the CI/CD/GitHub pipeline as **Partially Achieved** is actually a bit harsh. From a developer access, secrets management and deployment pipeline execution point of view the use of 2FA means that this is all very secure.
+
+Unfortunately it's not all about secrets here. 
+
+There might be issues within the resources deployed by Terraform, again sitting within their configuration, as well as the actual Rust code or the crates (libraries) the Lambdas are built from.
+
 
 TODO: 
 - AWS IAM
