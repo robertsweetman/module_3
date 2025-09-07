@@ -28,12 +28,7 @@ The first serverless function `postgres_dataload` goes and gets the latest elect
 
 The database is updated by subsequent lambda functions as the tender information passes through the ML/AI pipeline. The database stores a record of what has happened at each Lambda step and is used for debugging issues with the data pipeline. In future it could also be used as a source for further ML improvements via re-inforcement learning or to expand the amount of training data on which to retrain the model
 
-Open to the internet for ease of development from Windows machine using PgAdmin 4 application. REF: 
-TODO: 
- - Add link to docs
- - Find out how encryption works to/from here
-
-TODO: Look at the CVE site for the things in the system
+It's currently open to the internet for ease of development from Windows machine using PgAdmin4 PostgreSQL client REF: https://www.pgadmin.org running on the developers local machine. 
 
 ### GitHub action pipelines
 Pipelines deploy Terraform defined resources into AWS and also to build the AWS Lambdas (in Rust) and upload them to AWS S3. These pipelines use GitHub action secrets so no password or other sensitive values are ever committed to the GitHub repo for attackers to re-use.

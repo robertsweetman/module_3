@@ -6,6 +6,8 @@ We can easily remove public access to the database and put the Lambda's in a sec
 
 Unless we move over to AWS Aurora (which can be queried via the AWS Console UI) we have to create a bastion server to control access to the AWS environment and run a PostgreSQL client from there. These steps do immediately address the biggest issue with the application and environment security overall.
 
+Even though the older versions of the PGAdmin client has a few CVE's there are no new ones in 2025 and not for the latest version. We can still confidently use this, especially as it will now be running _behind_ the AWS 2FA boundary.
+
 ## Deploy additional checks as part of the GitHub Terraform deployment pipeline
 
 We can add static code analysis tools (like Trivy REF: https://trivy.dev/dev/docs/coverage/iac/terraform/) to the github CI/CD pipeline which will check all terraform files for vulnerabilities and misconfigurations of the resources we're building automatically in AWS. 
@@ -24,7 +26,7 @@ So with this in mind we need to investigate what can be done with the lambda log
 
 ## Subscribe to Amazon's Security Hub CSPM
 
-This AWS tool (REF: https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html#securityhub-benefits) provides a more in-depth view of your security position as well as an assessment of your deployed resources against industry standards and best practices. While we have "some" visibility from the Trusted Advisor checks (see next improvement) this would massively increase our confidence to deploy and maintain a secure application as well as protect the contents of our database.
+This AWS tool (REF: https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html#securityhub-benefits) provides a more in-depth view of your ongoing security position as well as an assessment of your deployed resources against industry standards and best practices. While we have "some" visibility from the Trusted Advisor checks (see next improvement) this would massively increase our confidence to deploy and maintain a secure application as well as protect the contents of our database on an ongoing basis.
 
 While this would increase the application's running cost  we are still sitting on top of a bunch of serverless functions that are "pay on execution" so already we're not spending that much. Having some automatic scanning of the resources in the environment would help enormously.
 
