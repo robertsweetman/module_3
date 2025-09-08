@@ -59,6 +59,8 @@ If, for example the Claude API key wasn't in a GitHub secret but had been (mista
 
 Exposure of some secrets would also potentially allow a bad actor to compromise the project's AWS RDS PostgreSQL database or delete things from it even.
 
+Happily, due to 2 Factor Authentication, all project secrets are protected but still available (via GitHub actions) to drive all the deployment and lambda build automation.
+
 <!--
 Outline your responsibilities in managing network security and describe this project's alignment with your professional growth. 
 
