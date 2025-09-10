@@ -12,9 +12,7 @@ Winder, D. (2025). New AI Attack Compromises Google Chrome’s Password Manager.
 
 Winder, D. (2025). Massive Surge In Ransomware Attacks—AI And 2FA Bypass In Crosshairs. [online] Forbes. Available at: https://www.forbes.com/sites/daveywinder/2025/03/25/massive-surge-in-ransomware-attacks-ai-and-2fa-bypass-to-blame/.
 
-‌
-
-‌Jackson, M. (2025). Vibe Check: The vibe coder’s security checklist. [online] Aikido.dev. Available at: https://www.aikido.dev/blog/vibe-check-the-vibe-coders-security-checklist [Accessed 10 Sep. 2025].
+‌‌Jackson, M. (2025). Vibe Check: The vibe coder’s security checklist. [online] Aikido.dev. Available at: https://www.aikido.dev/blog/vibe-check-the-vibe-coders-security-checklist [Accessed 10 Sep. 2025].
 
 ‌Arstechnica.com. (2025). This content is blocked! [online] Available at: https://arstechnica.com/tech-policy/2025/08/chatgpt-users-shocked-to-learn-their-chats-were-in-google-search-results/.
 
