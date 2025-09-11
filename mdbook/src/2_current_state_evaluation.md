@@ -155,6 +155,7 @@ There might be issues within the resources deployed by Terraform, again sitting 
 
 We can also make some architectural choices to mitigate issues further and also address "platform risk" (REF: https://www.startupillustrated.com/Archive/Platform-Risk/) which is the over-reliance on a particular platform or service in order for the application to function.
 
+TODO: Include the fact that in the initial ingestion Lambda and within the message passing between them, Rust's use of pre-defined structs means there's no way to inject malicious data into the initial tender record load or manipulate the payload moving between Lambda's without the application returning an error. Such is the nature of Rust's in-built type checking.
 
 TODO: 
 - AWS IAM
