@@ -12,6 +12,8 @@ Kawa, L. (2025). The AI spending boom is eating the US economy. [online] Sherwoo
 
 Pawel Rzepa (2018). Exploring 25K AWS S3 buckets. [online] Medium. Available at: https://medium.com/securing/exploring-25k-aws-s3-buckets-f22ec87c3f2a [Accessed 10 Sep. 2025].
 
+www.pgadmin.org. (n.d.). pgAdmin - PostgreSQL Tools. [online] Available at: https://www.pgadmin.org.
+
 Tenable Cloud Security Risk Report 2025. (n.d.). Available at: https://dam.tenable.com/6cca4c3f-05bf-402b-a6af-b2fb013263df/tenable-cloud-security-risk-report-2025.pdf [Accessed 10 Sep. 2025].
 
 Winder, D. (2025). Massive Surge In Ransomware Attacks—AI And 2FA Bypass In Crosshairs. [online] Forbes. Available at: https://www.forbes.com/sites/daveywinder/2025/03/25/massive-surge-in-ransomware-attacks-ai-and-2fa-bypass-to-blame/.

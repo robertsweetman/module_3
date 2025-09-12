@@ -1,25 +1,31 @@
 # Evaluation of Current State <!-- 1000 words -->
 
-Evaluating security for a function based serverless application is different than a traditional hub/spoke or point-to-point network because the essential platform is entirely different. As can be seen from the figure below, a serverless architecture means developers focus on the application while everything else is abstracted away or become the responsibility of the cloud platform provider.
+Evaluating security for a function based serverless application is different than a traditional hub/spoke or point-to-point network because the essential platform is entirely different. 
+
+Serverless apps aren't new but neither are they common. Their use is justified by the advantages they confer, especially from a cost and maintenance point of view.
+
+![Serverless Advantages](./images/serverless_advantages_1.png)
+![](./images/serverless_advantages_2.png)
+Figure 1 : Serverless Advantages (Cloud Security Alliance: 2023: 10)
+
+A serverless architecture means developers focus on the application while everything else is abstracted away or becomes the responsibility of the cloud platform provider.
 
 ![Serverless Shared Responsibility](./images/Serverless_Shared_Responsibility.png)
-Figure 1 : Serverless Responsibility (Cloud Security Alliance 2023:11)
+Figure 2 : Serverless Responsibility (Cloud Security Alliance 2023:11)
 
 Now, there is still _shared_ responsibility because although many vulnerabilities have been removed there are new issues that arise that are unique to a serverless approach.
 
 ![Setup and Deployment Stage Threats](./images/Setup_Deployment_Stage_Threats.png)
-Figure 2 : Setup and Deployment Stage Threats (Cloud Security Alliance 2023:20)
+Figure 3 : Setup and Deployment Stage Threats (Cloud Security Alliance 2023:20)
 
-For example, if we happen to commit secrets to code that would be an extreme "deployment stage" threat that could expose our application to being taken over. You certainly couldn't expect the cloud provider to take responsibility for this mistake.
+For example, if we happen to commit secrets to code that would be an extreme "deployment stage" threat that could expose our application to being taken over. 
 
-Serverless applications do have additional advantages over other approaches, primarily cost. 
-
-They are only charged on a "per-execution" basis so having a data-pipeline run each day and possibly instansiate a dozen functions and destroy them after a few minutes means the running cost of this application is less than $1 per day.
+You certainly couldn't expect the cloud provider to take responsibility for this mistake.
 
 ## Endpoint Inventory
 
 ![Initial Application Diagram](./images/initial-state-final.drawio.png)
-Figure 3: Initial Application Diagram
+Figure 4: Initial Application Diagram
 
 Our application is entirely cloud based and consists primarily of AWS Lambda (serverless) functions, an event-driven chain and PostgreSQL as a data store plus state record.  
 
@@ -28,12 +34,10 @@ The first serverless function `postgres_dataload` goes and gets the latest elect
 
 The database is updated by subsequent lambda functions as the tender information passes through the ML/AI pipeline. The database stores a record of what has happened at each Lambda step and is used for debugging issues with the data pipeline. In future it could also be used as a source for further ML improvements via re-inforcement learning or to expand the amount of training data on which to retrain the model
 
-It's currently open to the internet for ease of development from Windows machine using PgAdmin4 PostgreSQL client REF: https://www.pgadmin.org running on the developers local machine. 
+It's currently open to the internet for ease of development from Windows machine using PgAdmin4 PostgreSQL client (www.pgadmin.org, n.d.) running on the developers local machine. 
 
 ### GitHub action pipelines
-Pipelines deploy Terraform defined resources into AWS and also to build the AWS Lambdas (in Rust) and upload them to AWS S3. These pipelines use GitHub action secrets so no password or other sensitive values are ever committed to the GitHub repo for attackers to re-use.
-<!-- TODO: maybe cut this down rather -->
-Every interaction with the AWS resources is run via GitHub action pipelines all the secrets needed to access the environment are stored as GitHub Action Secrets, which are all secured via 2-Factor-Authentication (2FA) linked to the developers GitHub account.
+Pipelines deploy Terraform defined resources into AWS and also to build the AWS Lambdas (written in Rust) and upload them to AWS S3. These pipelines use GitHub action secrets so that no password or other sensitive values are ever committed to the GitHub repo for attackers to re-use.
 
 ### AWS S3
 To allow multiple developers to work on the project there is an S3 object location for the Terraform state file. This use of an S3 bucket to hold the Terraform state file is defined in the code.
@@ -69,7 +73,6 @@ To alert the sales team to a potential bid this service sends an email to a reci
 
 ### AWS IAM IMPORTANT: DEFINITELY COVER THIS
 
-https://genai.owasp.org/llm-top-10/ <-- use as a reference for analysis
 
 
 - ENDPOINT LIST
@@ -108,6 +111,8 @@ Based on the **NCSC Cyber Assessment Framework (CAF)** and **ISO 27001:2022**, t
 The NCSC CAF provides outcome-driven principles specifically designed for UK organisations, while ISO 27001 defines internationally recognised information security management standards.  
 
 For AI/ML we can use the **OWASP LLM Top 10** and **ENISA's AI Cybersecurity Guidelines** which cover risks in AI systems and data processing.
+
+https://genai.owasp.org/llm-top-10/ <-- use as a reference for analysis
 
 ### Risk Assessment Matrix
 
