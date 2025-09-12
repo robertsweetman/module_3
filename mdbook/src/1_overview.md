@@ -28,15 +28,22 @@ Now the three hundred pound gorilla in the room is AI, lending everyone a potent
 
 Spending on AI (capital investment) has balloned and it's contribution to US GDP so far this year has exceeded US consumer spending. (Kawa, 2025)
 
-Cybersecurity as it relates to AI is a new field with so many sharp edges that it's already challenging to keep up with. Here are some (very scary) recent incidents: 
+Cybersecurity as it relates to AI is a new field with so many sharp edges that it's already challenging to keep up with. 
 
-* Exfiltraging passwords from Chrome password manager (Winder, 2025)
+Here are some recent incidents that will no doubt keep Chief Information Security Officers awake: 
+
+* AI exfiltrating passwords from Chrome password manager (Winder, 2025)
 
 * Enthusiastic vibe coders committing API keys to repos (Jackson, 2025)
 
-* Enabling a huge increase in ransomware and highly targeted attacks (Winder, 2025)
+* AI enabling a huge increase in ransomware and highly targeted attacks (Winder, 2025)
+* Incidents of private AI chats leaking into google search results (Arstechnica.com, 2025) 
 
-Even leaking private chats into google search results (Arstechnica.com, 2025)
+Finally, the overall picture from the Cloud Security Alliance (cloudsecurityalliance.org, 2025:13) provides a particularly uncomfortable statistic.
+
+```text
+More than a third of organizations with AI workloads (34%) have already experienced an AI-related breach, raising urgent questions about AI security readiness and risk management
+```
 
 So while it's clear that AI can contribute to profitability and deliver value it's certainly not all roses.
 <!--
@@ -58,6 +65,8 @@ If, for example the Claude API key wasn't in a GitHub secret but had been (mista
 Exposure of some secrets would also potentially allow a bad actor to compromise the project's AWS RDS PostgreSQL database or delete things from it even.
 
 Happily, due to 2 Factor Authentication (Microsoft, n.d.) , all project secrets are protected but still available (via GitHub actions) to drive all the deployment and lambda build automation.
+
+The initial architecture, while developer friendly, now needs changing to enforce security best practice.
 
 <!--
 Outline your responsibilities in managing network security and describe this project's alignment with your professional growth. 

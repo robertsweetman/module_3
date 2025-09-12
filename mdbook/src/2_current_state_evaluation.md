@@ -49,6 +49,8 @@ The S3 bucket is also where the AWS Lambdas are uploaded to when built. Each Lam
 ### AWS Lambda functions & queues
 All the Lambda functions exist within the AWS environment. AWS Simple Queue Service is used to trigger and initialize new function instances when a message they're interested in lands on the queue and each Lambda post results onto the next queue in the chain.
 
+Due to the way the Rust language is designed all the messages passed into and between the various lambda's must conform to a pre-defined schema. It's not possible to inject or co-opt the messages because this validation and data-integrity checking is baked in.  
+
 <!-- 
 #### Postgres-dataload
 This is the function that kicks off the whole process of deciding which tenders to actually bid on. It's triggered on a schedule so at 09:00 it goes and get's the tender info and puts what's there on an SQS queue as well as updating the Post
@@ -71,18 +73,15 @@ The AI Summary Lambda makes a call over the web to Claude's API endpoint via htt
 ### AWS Simple Notification Service
 To alert the sales team to a potential bid this service sends an email to a recipient list. In the development phase all emails have to be validated by the recipient agreeing to receive emails from this particular source. For security, the SNS service uses a real domain account which has also been independently validated/approved by the domain owner via DNS settings.
 
-### AWS IAM IMPORTANT: DEFINITELY COVER THIS
+### AWS IAM 
 
+Clearly identity and access management is the key-stone to securely deploying, monitoring and managing any cloud-base application. Without a robust policy, use of least privilege and enforcement any account could come under attack and potentially taken over. 
 
+AWS and Azure both enforce 2FA for increased account security (AWS, n.d.) with Microsoft going as far as mandating it from October 1st 2025 as announced in their recent blog (Shah, 2025)
 
-- ENDPOINT LIST
- - ROLE
- - RISK/SIGNIFICANCE
-
-
-IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
- - JUST THE DIAGRAM AND ENDPOINT INVENTORY HERE
- - IN no particular order
+```text
+Microsoft research shows that multifactor authentication (MFA) can block more than 99.2% of account compromise attacks, making it one of the most effective security measures available.
+```
 
 <!-- 
  * draw IO for network diagram
@@ -106,13 +105,11 @@ MILESTONE 3 - score the likelyhood of a breach vs. a framework.
 
 ## Cybersecurity Analysis
 
-Based on the **NCSC Cyber Assessment Framework (CAF)** and **ISO 27001:2022**, this analysis evaluates each endpoint against UK cybersecurity best practices. 
+Based on the **NCSC Cyber Assessment Framework (CAF)** (NCSC, 2024) and **ISO 27001:2022**, this analysis evaluates each endpoint against UK cybersecurity best practices. 
 
 The NCSC CAF provides outcome-driven principles specifically designed for UK organisations, while ISO 27001 defines internationally recognised information security management standards.  
 
-For AI/ML we can use the **OWASP LLM Top 10** and **ENISA's AI Cybersecurity Guidelines** which cover risks in AI systems and data processing.
-
-https://genai.owasp.org/llm-top-10/ <-- use as a reference for analysis
+For AI/ML we can use the **OWASP LLM Top 10** (OWASPLLMProject Admin, 2024) and **ENISA's AI Cybersecurity Guidelines** (ENISA, 2023) which cover risks in AI systems and data processing.
 
 ### Risk Assessment Matrix
 

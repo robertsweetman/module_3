@@ -8,6 +8,10 @@ Unless we move over to AWS Aurora (which can be queried via the AWS Console UI) 
 
 Even though the older versions of the PGAdmin client has a few CVE's there are no new ones in 2025 and not for the latest version. We can still confidently use this, especially as it will now be running _behind_ the AWS 2FA boundary.
 
+## Database backup 
+
+Add secure automated backups to the database settings so that if an issue occurs we can at least roll back to the last known good state.
+
 ## Deploy additional checks as part of the GitHub Terraform deployment pipeline
 
 We can add static code analysis tools (like Trivy REF: https://trivy.dev/dev/docs/coverage/iac/terraform/) to the github CI/CD pipeline which will check all terraform files for vulnerabilities and misconfigurations of the resources we're building automatically in AWS. 
