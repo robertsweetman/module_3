@@ -87,28 +87,20 @@ The following table uses the **NCSC CAF outcome assessments** to evaluate curren
 
 Using these outcomes helps non-technical sponsors understand the current state of the system with respect to security.
 
-| Endpoint | Role | Primary Risks | NCSC CAF Assessment | Impact if Breached |
-|----------|------|---------------|-------------------|-------------------|
-| **AWS RDS (PostgreSQL)** | Data storage and state management | • Unauthorized data access<br/>• Data manipulation/corruption<br/>• Credential exposure<br/>• Public internet exposure | **Not Achieved** | Complete tender data compromise, competitive intelligence loss |
-| **GitHub Action Pipelines** | CI/CD deployment and secrets management | • Secret exposure in logs<br/>• Pipeline injection attacks<br/>• Unauthorized deployments<br/> | **Partially Achieved** | Full AWS environment takeover, code tampering, infrastructure manipulation, backdoor deployment |
-| **AWS S3 Bucket** | Terraform state and Lambda code storage | • Terraform state exposure<br/>• Lambda code tampering<br/>• Unauthorized object access<br/>• Bucket policy misconfiguration | **Achieved** | Infrastructure secrets exposure, code intellectual property theft, deployment manipulation |
-| **AWS Lambda Functions** | Core business logic processing | • Function injection attacks<br/>• Environment variable exposure<br/>• Excessive permissions<br/>• Dependency vulnerabilities | **Partially Achieved** | Business logic bypass, data processing manipulation, service disruption |
-| **AWS SQS Queues** | Inter-service communication | • Message tampering<br/>• Queue flooding (DoS)<br/>• Dead letter queue exposure<br/>• Cross-service privilege escalation | **Achieved** | Data pipeline disruption, message manipulation, service degradation |
-| **Anthropic Claude API** | AI/ML text analysis and summarization | • Prompt injection attacks<br/>• API key compromise<br/>• Model poisoning via crafted inputs | **Achieved** | Tender data exposure to third party, AI system manipulation |
-| **AWS SNS** | Notification and alerting system | • Email spoofing/phishing<br/>• Unauthorized subscription access<br/>• Message interception<br/>• Service abuse for spam | **Achieved** | False notifications, information disclosure via email, social engineering attacks |
-| **AWS IAM** | Identity and access management | • Privilege escalation<br/>• Role assumption abuse<br/>• Policy misconfigurations<br/>• Credential exposure | **Achieved** | Complete AWS account takeover, cross-service access, data exfiltration, resource manipulation |
+![Risk Assessment Table](./images/risk_assessment_table.png)
+Figure 5: Risk Assessment Table
 
 Where endpoints are assessed as **Achieved** this is primarily through the use of 2 Factor Authentication both to access AWS and GitHub, especially when it comes to using or storing credentials or secrets. 
 
 We can also use AWS internal tools to help identify or further qualify risks. AWS has their own security review tooling which looks at the underlying infrastructure for issues. 
 
 ![AWS Security Review](./images/aws_security_review.png)
-Figure 4: AWS Security Review - _clearly highlights PostgreSQL open port risk_
+Figure 6: AWS Security Review - _clearly highlights PostgreSQL open port risk_
 
 At the database level, while there are vulnerabilities they are at such a low possibility of being exploited that it's not worth worrying about.
 
 ![PostrgeSQL Vulnerabilities](./images/Postgres_Vulnerabilities.png)
-Figure 5: PostgreSQL vulnerabilities
+Figure 7: PostgreSQL vulnerabilities
 
 Very low EPSS scores indicate that these exploits are unlikely to be effectively executed in the wild (FIRST — Forum of Incident Response and Security Teams, 2025)
 

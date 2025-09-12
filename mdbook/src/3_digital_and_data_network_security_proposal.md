@@ -75,7 +75,7 @@ These sorts of changes should definitely be considered longer term, maybe after 
 ## Proposal Summary
 
 ![Improved Data Security](./images/improved-state.drawio.png)
-Figure 4: Final Application Diagram
+Figure 8: Final Application Diagram
 
 As can be seen in this diagram we've removed the two main external security risks, logging into the database over the open internet and sending our AI summary payload out to Anthropic's external facing API. 
 

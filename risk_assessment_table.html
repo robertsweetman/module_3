@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risk Assessment Matrix</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        .not-achieved {
+            background-color: #ffebee;
+            color: #c62828;
+            font-weight: bold;
+        }
+        .partially-achieved {
+            background-color: #fff3e0;
+            color: #ef6c00;
+            font-weight: bold;
+        }
+        .achieved {
+            background-color: #e8f5e8;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+        .endpoint {
+            font-weight: bold;
+            color: #1976d2;
+        }
+        ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+        li {
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Risk Assessment Matrix - NCSC CAF Evaluation</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Endpoint</th>
+                <th>Role</th>
+                <th>Primary Risks</th>
+                <th>NCSC CAF Assessment</th>
+                <th>Impact if Breached</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="endpoint">AWS RDS (PostgreSQL)</td>
+                <td>Data storage and state management</td>
+                <td>
+                    <ul>
+                        <li>Unauthorized data access</li>
+                        <li>Data manipulation/corruption</li>
+                        <li>Credential exposure</li>
+                        <li>Public internet exposure</li>
+                    </ul>
+                </td>
+                <td class="not-achieved">Not Achieved</td>
+                <td>Complete tender data compromise, competitive intelligence loss</td>
+            </tr>
+            <tr>
+                <td class="endpoint">GitHub Action Pipelines</td>
+                <td>CI/CD deployment and secrets management</td>
+                <td>
+                    <ul>
+                        <li>Secret exposure in logs</li>
+                        <li>Pipeline injection attacks</li>
+                        <li>Unauthorized deployments</li>
+                    </ul>
+                </td>
+                <td class="partially-achieved">Partially Achieved</td>
+                <td>Full AWS environment takeover, code tampering, infrastructure manipulation, backdoor deployment</td>
+            </tr>
+            <tr>
+                <td class="endpoint">AWS S3 Bucket</td>
+                <td>Terraform state and Lambda code storage</td>
+                <td>
+                    <ul>
+                        <li>Terraform state exposure</li>
+                        <li>Lambda code tampering</li>
+                        <li>Unauthorized object access</li>
+                        <li>Bucket policy misconfiguration</li>
+                    </ul>
+                </td>
+                <td class="achieved">Achieved</td>
+                <td>Infrastructure secrets exposure, code intellectual property theft, deployment manipulation</td>
+            </tr>
+            <tr>
+                <td class="endpoint">AWS Lambda Functions</td>
+                <td>Core business logic processing</td>
+                <td>
+                    <ul>
+                        <li>Function injection attacks</li>
+                        <li>Environment variable exposure</li>
+                        <li>Excessive permissions</li>
+                        <li>Dependency vulnerabilities</li>
+                    </ul>
+                </td>
+                <td class="partially-achieved">Partially Achieved</td>
+                <td>Business logic bypass, data processing manipulation, service disruption</td>
+            </tr>
+            <tr>
+                <td class="endpoint">AWS SQS Queues</td>
+                <td>Inter-service communication</td>
+                <td>
+                    <ul>
+                        <li>Message tampering</li>
+                        <li>Queue flooding (DoS)</li>
+                        <li>Dead letter queue exposure</li>
+                        <li>Cross-service privilege escalation</li>
+                    </ul>
+                </td>
+                <td class="achieved">Achieved</td>
+                <td>Data pipeline disruption, message manipulation, service degradation</td>
+            </tr>
+            <tr>
+                <td class="endpoint">Anthropic Claude API</td>
+                <td>AI/ML text analysis and summarization</td>
+                <td>
+                    <ul>
+                        <li>Prompt injection attacks</li>
+                        <li>API key compromise</li>
+                        <li>Model poisoning via crafted inputs</li>
+                    </ul>
+                </td>
+                <td class="achieved">Achieved</td>
+                <td>Tender data exposure to third party, AI system manipulation</td>
+            </tr>
+            <tr>
+                <td class="endpoint">AWS SNS</td>
+                <td>Notification and alerting system</td>
+                <td>
+                    <ul>
+                        <li>Email spoofing/phishing</li>
+                        <li>Unauthorized subscription access</li>
+                        <li>Message interception</li>
+                        <li>Service abuse for spam</li>
+                    </ul>
+                </td>
+                <td class="achieved">Achieved</td>
+                <td>False notifications, information disclosure via email, social engineering attacks</td>
+            </tr>
+            <tr>
+                <td class="endpoint">AWS IAM</td>
+                <td>Identity and access management</td>
+                <td>
+                    <ul>
+                        <li>Privilege escalation</li>
+                        <li>Role assumption abuse</li>
+                        <li>Policy misconfigurations</li>
+                        <li>Credential exposure</li>
+                    </ul>
+                </td>
+                <td class="achieved">Achieved</td>
+                <td>Complete AWS account takeover, cross-service access, data exfiltration, resource manipulation</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
