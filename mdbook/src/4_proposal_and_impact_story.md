@@ -19,7 +19,7 @@ Failure to act, especially in the case of PostgreSQL access, could result in the
 
 While this particular application is based entirely on publically available data the reputational damage for any sort of breach, especially for a consultancy service, is likely to be significant.
 
-Global Cyberattacks are only increasing in frequency (CheckPoint, 2024) REF: https://blog.checkpoint.com/research/check-point-research-reports-highest-increase-of-global-cyber-attacks-seen-in-last-two-years-a-30-increase-in-q2-2024-global-cyber-attacks/ with reputation being something that would be impacted (CYE Insights, 2024) REF: https://cyesec.com/blog/hidden-costs-cyberattack-impact-reputation 
+Global Cyberattacks are only increasing in frequency (CheckPoint, 2024) with reputation being something that would be impacted (CYE Insights, 2024)
 
 It only takes one decision maker backing off awarding a single contract to make a £5-100 million dent in a companies revenue. Reputation has a huge impact on the contract awards process and likelyhood of a positive outcome.
 

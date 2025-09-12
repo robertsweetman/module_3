@@ -83,37 +83,18 @@ AWS and Azure both enforce 2FA for increased account security (AWS, n.d.) with M
 Microsoft research shows that multifactor authentication (MFA) can block more than 99.2% of account compromise attacks, making it one of the most effective security measures available.
 ```
 
-<!-- 
- * draw IO for network diagram
- * look at OWASP AI/LLM stuff
- * explain topology i.e. ALL CLOUD or STAR or something else
- * what are the key concepts on the diagram
- * argue for why improvements made, justify decisions
- * diagram for after, for example
- * support the WHY with industry best practice
-  * GDPR is that's relevant
-  * CVE's severity etc.
-
-MILESTONE 3 - score the likelyhood of a breach vs. a framework. 
--->
-
-<!--
-* Create an Inventory of accessible network endpointscategorized by role, operating system and significance, using advanced scanning tools
-
-* Create a basic network diagram that can include components like routers, switches, servers and workstations
--->
 
 ## Cybersecurity Analysis
 
-Based on the **NCSC Cyber Assessment Framework (CAF)** (NCSC, 2024) and **ISO 27001:2022**, this analysis evaluates each endpoint against UK cybersecurity best practices. 
-
-The NCSC CAF provides outcome-driven principles specifically designed for UK organisations, while ISO 27001 defines internationally recognised information security management standards.  
+Oeverall we can use the **NCSC Cyber Assessment Framework (CAF)** (NCSC, 2024) and **ISO 27001:2022**, which evaluates each endpoint against UK cybersecurity best practices. 
 
 For AI/ML we can use the **OWASP LLM Top 10** (OWASPLLMProject Admin, 2024) and **ENISA's AI Cybersecurity Guidelines** (ENISA, 2023) which cover risks in AI systems and data processing.
 
+There's also some pretty good overviews when it comes to GitHub Action pipeline vulnerabilities (Singh, 2024)
+
 ### Risk Assessment Matrix
 
-The following table applies **ISO 27005** risk management methodology for systematic risk identification, analysis, and evaluation, while using **NCSC CAF outcome assessments** to evaluate current security posture. 
+The following table uses the **NCSC CAF outcome assessments** to evaluate current security. 
 
 **NCSC CAF outcomes** are rated as:
 - **Not Achieved**: Significant security gaps, immediate attention required
@@ -145,9 +126,9 @@ At the database level, while there are vulnerabilities they are at such a low po
 ![PostrgeSQL Vulnerabilities](./images/Postgres_Vulnerabilities.png)
 Figure 5: PostgreSQL vulnerabilities
 
-Very low EPSS scores indicate that these exploits are unlikely to be effectively executed in the wild (REF: https://www.first.org/epss/) 
+Very low EPSS scores indicate that these exploits are unlikely to be effectively executed in the wild (FIRST — Forum of Incident Response and Security Teams, 2025)
 
-Very often it's security **misconfiguration** that leads to vulnerabilities (REF: https://www.huntress.com/cybersecurity-101/topics/what-is-security-misconfiguration) which is where automated tools like AWS Security Review comes in to play, pointing out common issues that might easily lead to data compromise.
+Very often it's security **misconfiguration** that leads to vulnerabilities (Huntress, 2025) which is where automated tools like AWS Security Review comes in to play, pointing out common issues that might easily lead to data compromise.
 
 Assessing the CI/CD/GitHub pipeline as **Partially Achieved** is actually a bit harsh. From a developer access, secrets management and deployment pipeline execution point of view the use of 2FA means that this is all very secure.
 
@@ -155,58 +136,26 @@ Unfortunately it's not all about secrets here.
 
 There might be issues within the resources deployed by Terraform, again sitting within their configuration, as well as the actual Rust code or the crates (libraries) the Lambdas are built from. We will get into mitigation steps for these issues in the next section though.
 
-We can also make some architectural choices to mitigate issues further and also address "platform risk" (REF: https://www.startupillustrated.com/Archive/Platform-Risk/) which is the over-reliance on a particular platform or service in order for the application to function.
-
-TODO: Include the fact that in the initial ingestion Lambda and within the message passing between them, Rust's use of pre-defined structs means there's no way to inject malicious data into the initial tender record load or manipulate the payload moving between Lambda's without the application returning an error. Such is the nature of Rust's in-built type checking.
-
-TODO: 
-- AWS IAM
- - BEST PRACTICES ARE WHAT?
-- TOOLS ADVANTAGES AND DISADVANTAGES
-- THREAT ANALYSIS 
- - ESPECIALLY IN RELATION TO DATA
- - WHAT SCANNING TOOLS APPLY HERE?
-
-* "well architected framework"
-* AWS security advisor <- I've got a picture for this now
-* Trivy security analysis for Terraform
-* Other 'best practice' frameworks for cloud/serverless
-* WHAT SECURITY FRAMEWORKS APPLY TO THE AI COMPONENT
-
-https://www.cvedetails.com/vendor/336/ <- postgreSQL
-
-https://medium.com/@simardeep.oberoi/unveiling-github-actions-vulnerabilities-a-comprehensive-technical-guide-to-attack-vectors-and-6a26a83e9fb2
-
-https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator
-
-IMPORTANT: DO NOT TALK ABOUT REMEDIATION AT ALL IN THIS SECTION
-
-### AWS RDS (PostgreSQL) db connection
-As can be seen from the AWS RDS security group config, the AWS RDS db connection is open to the internet. It was set up this way initially so that the application developers could quickly validate and iterate on the database design from their local machines.
-
-TODO: Add code pic here
-
-While there is definitely a convenience to be had from quickly running queries locally as the solution is being developed, access over the web secured by a simple username/password puts this as a high risk activity. 
-
-TODO: Is there an AWS based web interface from which you can run queries instead??
-
-Open to the internet for ease of development from Windows machine using PgAdmin 4 application. REF: https://www.pgadmin.org/
-TODO: 
- - Add link to docs
- - Find out how encryption works to/from here
- - Run wireshark on connections to the db via Pgadmin to see whether or not these are encrypted
-
-### GitHub Action Pipelines
-
-
-### AWS S3
-Upload to S3 is only available via the GitHub action pipelines and all the secrets needed to access the environment are stored as GitHub Action Secrets, which are all secured via 2-Factor-Authentication (2FA) 
-
-
-
+We can also make some architectural choices to mitigate issues further and also address "platform risk" (www.startupillustrated.com, n.d.) which is the over-reliance on a particular platform or service in order for the application to function.
 
 <!-- 
-- clear text/issues
+ * draw IO for network diagram
+ * look at OWASP AI/LLM stuff
+ * explain topology i.e. ALL CLOUD or STAR or something else
+ * what are the key concepts on the diagram
+ * argue for why improvements made, justify decisions
+ * diagram for after, for example
+ * support the WHY with industry best practice
+  * GDPR is that's relevant
+  * CVE's severity etc.
+
+MILESTONE 3 - score the likelyhood of a breach vs. a framework. 
+-->
+
+<!--
+* Create an Inventory of accessible network endpointscategorized by role, operating system and significance, using advanced scanning tools
+
+* Create a basic network diagram that can include components like routers, switches, servers and workstations
 -->
 
 <!-- 
