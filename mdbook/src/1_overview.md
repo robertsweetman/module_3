@@ -2,35 +2,27 @@
 
 ## Cybersecurity Significance
 
-Since we're all firmly rooted in the digital age there's no aspect of our lives that don't rely on robust cybersecurity. 
+Since we're all firmly rooted in the digital age there's no aspect of our lives that don't rely on robust cybersecurity to protect valuable information about ourselves, our employer or our clients. 
 
-As with aany technical domain it's very easy to stress the hardware, tools and buzzwords but loose sight of the goal - protecting valuable information about ourselves, our employer or our clients. 
-
-Emerging technology doesn't arrive fully "battle tested" and best practices take time to become established. This shows security around AWS S3 buckets from 7 years ago (Rzepa, 2018): 
+Unfortunately new technology doesn't arrive fully "battle tested" and best practices take time to become established. Results below from scanning AWS S3 buckets from 7 years ago (Rzepa, 2018): 
 
 ```text
 For 24652 scanned buckets I was able to collect files from 5241 buckets (21%) and to upload arbitrary files to 1365 buckets (6%). 
 ```
 
-Of course things will have improved since then, but they're still not great according to Tenable (2025)
+Of course things will have improved but they're still not great according to Tenable (2025)
 
 ```text
 The number of organizations with triple-threat cloud instances — “publicly exposed, critically vulnerable and highly privileged” — declined from 38% between January and June 2024 to 29% between October 2024 and March 2025.
 ```
 
-Still surprisingly high really.
-
-Similarly unguarded access to Internet of Things (IoT) devices has allowed hackers to control huge "botnets", computers acting together to (usually) launch Denial Of Service attacks at targets. 
+Similarly unguarded access to Internet of Things (IoT) devices has allowed hackers to control huge "botnets", computers acting together to launch Denial Of Service attacks at targets. 
 
 These botnets are often state-sponsored and designed to take opposition sites and services off-line at critical periods (Godwin, 2024).
 
-Now the three hundred pound gorilla in the room is AI, lending everyone a potential foot-gun. 
+While spending on AI (capital investment) has balloned and it's contribution to US GDP so far this year has exceeded US consumer spending. (Kawa, 2025)
 
-Spending on AI (capital investment) has balloned and it's contribution to US GDP so far this year has exceeded US consumer spending. (Kawa, 2025)
-
-Cybersecurity as it relates to AI is a new field with so many sharp edges that it's already challenging to keep up with. 
-
-Here are some recent incidents that will no doubt keep Chief Information Security Officers awake: 
+Cybersecurity as it relates to AI is a new field that iss already challenging to keep up with. Here are some recent incidents that will no doubt keep Chief Information Security Officers awake: 
 
 * AI exfiltrating passwords from Chrome password manager (Winder, 2025)
 
