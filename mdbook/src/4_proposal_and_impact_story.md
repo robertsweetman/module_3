@@ -1,61 +1,30 @@
-# Proposal and Impact Story <!-- 300 words -->
+# Proposal and Impact Story
 
-To help communicate the changes to a non technical audience we can focus on the overall categories of risk we're addressing. Using the NCSC framework allows us to say that all the requirements of the Cyber Assessment Framework (CAF) are now at the **Achieved** level. Going into slightly more detail:
+To help communicate the changes to a non technical audience we can use the NCSC framework and say allows us to say  our proposed changes reach **Achieved** level across all requirements: 
 
-* Database access is only available to internal staff
-* Ongoing logging & monitoring will alert us to any application issues
-* Ongoing Security scanning will highlight any AWS config and resource issues
-* Moving the `ai_summary` Lambda API calls to AWS Bedrock increases security
+* **Database access** - Internal staff only via bastion server
+* **Monitoring** - Real time alerts for application issues
+* **Security scanning** - AWS config and resource issues
+* **API security** - Migrate to AWS Bedrock from external API
 
 Now the only external interaction the AWS hosted environment has is to send the "respond to this tender" message and this is only ever an outbound email. This, combined with ongoing logging & scanning results in a very secure application
 
 ## Implementation Costs
 
-Overall the costs of making these changes are vey low. 
-
-| Item | Cost | Notes |
+| Item | Monthly Cost | Notes |
 |------|------|-------|
-| Base cost | £20 per month | Existing application resources cost from 3 months of historical operation |
-| EC2 bastion server | + £15 per month approx | ($0.025 per hour x 744 hours) @ 0.75 pounds per USD (AWS, 2025) |
-| Move to AWS Bedrock | cost neutral | AWS per token pricing == Anthropic API direct call pricing |
-| Increase in Logging/Monitoring | + £10 per month approx | Cost of increase in data flow for logging |
+| Base cost | £20 | Historical 3 month average |
+| EC2 bastion server | +£15 | ($0.025 per hour x 744 hours) @ 0.75 pounds per USD (AWS, 2025) |
+| Move to AWS Bedrock | £0 | Cost neutral vs. current API |
+| Enhance Logging/Monitoring | +£10 | Increases data flow |
 | Developer Time | estimate 1 -5 hourse | one off cost |
 
 Even doubling the running cost of the app by adding a bastion server isn't nearly as damaging as suffering reputational damage.
 
-## Quantifying Impact
+## Risk vs Investment
 
-Failure to act, especially in the case of PostgreSQL access, could result in the takeover of the database. This is a particularly unpleasant outcome which an attacker could significantly missuse by storing their own illegal information on there, simply deleting or stealing the original content for ransom.
-
-While this particular application is based entirely on publically available data the reputational damage for any sort of breach, especially for a consultancy service, is likely to be significant.
+Failure to act, especially in the case of a consultancy, means any reputational damage is likely to be significant.
 
 Global Cyberattacks are only increasing in frequency (CheckPoint, 2024) with reputation being something that would be impacted (CYE Insights, 2024)
 
 It only takes one decision maker hesitating on a contract award to make a £5-100 million dent in a companies revenue because reputation has a huge impact on the contract awards process and likelyhood of a positive outcome.
-
-
-
-<!-- 
-WHAT ARE THE RISKS IF YOU DON'T DO IT vs. IF YOU DO
-IMPORTANT: Put an actual money value on this
-IMPORTANT: look at feedback on Module 2 for this as well
--->
-
-<!-- 
-* Develop an impact story that illustrates the ROI of propose security enhancements. Highlight potential cost savings, revenue improvements and the enablement of other critical organizational functions.
-
-* GUIDANCE USE: Reference the Business Impact Story Guide to structure the narrative effectivey, ensuring the benefits are clear and compelling.
-
--->
-
-<!-- MARKING RUBRIC
-
-PROPOSE A SOLUTION TO INCREASE THE SECURITY OF THE NETWORK/DATA
-* Develop a sophisticated solution to address the identified vulnerabilities and risks
-* Thoroughly explain how the proposed solution aligns with industry standards/regulations
-  * Explain in a clear and concise manner
-  * Include additional insights and examples
-
-Evidence this in Secton 3 also!
-
--->

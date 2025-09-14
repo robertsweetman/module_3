@@ -18,7 +18,11 @@ We can add static code analysis tools (Trivy.dev, 2025) to the github CI/CD pipe
 
 ## Deploy additional code checks to examine GitHub commits for passwords
 
-There are also tools that can be added for automated secret scanning (Gitguardian.com, 2025) because even if you delete a secret from a commit it'll remain in the git history and unless you change it something in your environment could be compromised.
+Automated secret scanning (Gitguardian.com, 2025) can be added because even if you delete a secret from a commit it'll remain in the git history and therefore accessible.
+
+## Check AWS Lambda crates for malicious code
+
+Recently spoof emails, proportedly from the Rust Foundation, led to attempts to corrupt some Rust libraries (Rogers, 2025). Developers must make conscious checks on libraries used to build applications nowadays. Rust has mitigations the library manifest requires packages to pin version numbers but this attack vector is definitely not a solved issue.
 
 ## Increase and enhance AWS Lambda logging
 
@@ -54,23 +58,29 @@ We could make two modifications to create a black box with just an internal sche
 
 ### Replace external Anthropic API call with AWS Bedrock
 
-Bedrock is Amazon's cloud hosted AI platform. Using this would mean that the `ai_summary` lambda traffic doesn't need to leave the AWS network at all. This would also reduce our reliance on Anthropic's external API remaining un-changed or allow us more flexibility to potential replace the call to Claude with something else, possibly cheaper.
+Bedrock is Amazon's cloud hosted AI platform. Using this would mean that the `ai_summary` lambda traffic doesn't need to leave the internal network at all. This would also reduce our reliance on Anthropic's external API remaining un-changed or allow us more flexibility to potential replace the call to Claude with something else, possibly cheaper.
 
 Plugging into Bedrock likely also means we get more logging which would further enhance our troubleshooting ability.
 
-### Remove the PostgreSQL database altogether
+### Remove the PostgreSQL database
 
-While we're using PostgreSQL to understand where our eTender examination sits in the overall data pipeline and 'potentially' for ML model retraining at a later date we could also decide it's not actually needed in the long run. 
+The database holds whereabouts our eTender record is in the pipeline and could be used for for ML model retraining but we could also decide it's not needed.
 
-Since we're using AWS Lambda functions we do get enough logging from the serverless functions themselves and can look at the SQS queue outputs to understand whether something was processed successfully or not. 
+We get logging from the Lambda functions themselves and could instead look at the SQS queue outputs to understand whether something was processed successfully or not. 
 
-Now that we have the application running, assuming we don't have to deal with changes to the eTenders data being ingested we could actually remove the database altogether.
+Now that we have the application running we could remove the database altogether.
 
 ### Replace the PostgreSQL database with Aurora DB instead
 
-If we at least want to retain the DB, mainly for ML model retraining later, we could at least replace it with Aurora DB because this has an in-built AWS Query UI. This would allow us to interrogate it without having to maintain a bastion server to run the PostgreSQL client. There's also an Aurora Serverless offering which actually only runs when it needs to and since we're only running `postgresql_dataload` once per day this _might_ be cheaper. (Amazon Web Service, 2025) $0.14 per hour while running our current RDS instance is costing $20 per month so it appears we could reduce this to about $3 per month...
+If we at least want to retain the DB, mainly for ML model retraining later, we could at least replace it with Aurora DB because this has an in-built AWS Query UI. 
 
-These sorts of changes should definitely be considered longer term, maybe after a couple of ML training iterations have been run on more recent eTender records.
+This would allow us to interrogate it without having to maintain a bastion server to run the PostgreSQL client. 
+
+There's also an Aurora Serverless offering which only runs when it needs to and since we're just running `postgresql_dataload` once per day this _might_ be cheaper. (Amazon Web Service, 2025) 
+
+This costs $0.14 per hour while running our current RDS instance is costing $20 per month so it appears we could reduce this to about $3 per month...
+
+These sorts of changes should definitely be considered longer term.
 
 ## Proposal Summary
 
@@ -78,6 +88,8 @@ These sorts of changes should definitely be considered longer term, maybe after 
 Figure 8: Final Application Diagram
 
 As can be seen in this diagram we've removed the two main external security risks, logging into the database over the open internet and sending our AI summary payload out to Anthropic's external facing API. 
+
+
 
 <!-- 
 * Based on your analysis, propose strategic enhancements to address identified vulnerabilities

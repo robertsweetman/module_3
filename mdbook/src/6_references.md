@@ -44,6 +44,10 @@ OWASPLLMProject Admin (2024). OWASP Top 10 for LLM Applications 2025 - OWASP Top
 
 www.pgadmin.org. (n.d.). pgAdmin - PostgreSQL Tools. [online] Available at: https://www.pgadmin.org.
 
+Rogers, E. (2025). Rust Developers Targeted in Phishing Scam on Crates.io for GitHub Credentials. [online] WebProNews. Available at: https://www.webpronews.com/rust-developers-targeted-in-phishing-scam-on-crates-io-for-github-credentials/ [Accessed 14 Sep. 2025].
+
+robertsweetman (2025). GitHub - robertsweetman/module_2. [online] GitHub. Available at: https://github.com/robertsweetman/module_2 [Accessed 14 Sep. 2025].
+
 Shah, J. (2025). Azure mandatory multifactor authentication: Phase 2 starting in October 2025 | Microsoft Azure Blog. [online] Microsoft Azure Blog. Available at: https://azure.microsoft.com/en-us/blog/azure-mandatory-multifactor-authentication-phase-2-starting-in-october-2025/.
 
 Singh, S. (2024). Unveiling GitHub Actions Vulnerabilities: A Comprehensive Technical Guide to Attack Vectors and Mitigations. [online] Medium. Available at: https://medium.com/@simardeep.oberoi/unveiling-github-actions-vulnerabilities-a-comprehensive-technical-guide-to-attack-vectors-and-6a26a83e9fb2.
