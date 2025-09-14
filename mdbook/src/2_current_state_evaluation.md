@@ -1,5 +1,5 @@
 # Evaluation of Current State
-Evaluating serverless application securitydiffers from traditional networks but their use is justified by advantages they confer, especially related to cost and maintenance.
+Evaluating serverless application security differs from traditional networks but their use is justified by advantages they confer, especially related to cost and maintenance.
 
 ![Serverless Advantages](./images/serverless_advantages_1.png)
 ![](./images/serverless_advantages_2.png)
@@ -101,7 +101,7 @@ Very low EPSS scores indicate that these exploits are unlikely to be effectively
 
 It's often security **misconfiguration** that leads to vulnerabilities (Huntress, 2025) so automated tools (e.g. AWS Security Review) can point out common issues that might lead to data compromise.
 
-Assessing the CI/CD/GitHub pipeline as **Partially Achieved** is possibly harsh. Use of  2FA means that developer access, secrects management and the deployment pipeline are all very secure but it's not just about secrets...
+Assessing the CI/CD/GitHub pipeline as **Partially Achieved** is possibly harsh. Use of  2FA means that developer access, secrets management and the deployment pipeline are all very secure but it's not just about secrets...
 
 There might be issues within the resources deployed by Terraform, especially within their configuration, as well as the Rust code or the crates (libraries) the Lambdas are built from.
 

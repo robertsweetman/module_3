@@ -22,7 +22,7 @@ Automated secret scanning (Gitguardian.com, 2025) can be added because even if y
 
 ## Check AWS Lambda crates for malicious code
 
-Recently spoof emails, proportedly from the Rust Foundation, led to attempts to corrupt some Rust libraries (Rogers, 2025). Developers must make conscious checks on libraries used to build applications nowadays. Rust has mitigations the library manifest requires packages to pin version numbers but this attack vector is definitely not a solved issue.
+Recently spoof emails, purportedly from the Rust Foundation, led to attempts to corrupt some Rust libraries (Rogers, 2025). Developers must make conscious checks on libraries used to build applications nowadays. Rust has mitigations the library manifest requires packages to pin version numbers but this attack vector is definitely not a solved issue.
 
 ## Increase and enhance AWS Lambda logging
 
@@ -64,7 +64,7 @@ Plugging into Bedrock likely also means we get more logging which would further 
 
 ### Remove the PostgreSQL database
 
-The database holds whereabouts our eTender record is in the pipeline and could be used for for ML model retraining but we could also decide it's not needed.
+The database holds whereabouts our eTender record is in the pipeline and could be used for ML model retraining but we could also decide it's not needed.
 
 We get logging from the Lambda functions themselves and could instead look at the SQS queue outputs to understand whether something was processed successfully or not. 
 
