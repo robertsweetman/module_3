@@ -1,5 +1,5 @@
 # Evaluation of Current State
-Evaluating security for a serverless application differs from traditional networks but  their use is justified by the advantages they confer, especially from a cost and maintenance point of view.
+Evaluating serverless application securitydiffers from traditional networks but their use is justified by advantages they confer, especially related to cost and maintenance.
 
 ![Serverless Advantages](./images/serverless_advantages_1.png)
 ![](./images/serverless_advantages_2.png)
@@ -15,23 +15,23 @@ Note that there is still _shared_ responsibility because although many vulnerabi
 ![Setup and Deployment Stage Threats](./images/Setup_Deployment_Stage_Threats.png)
 Figure 3 : Setup and Deployment Stage Threats (Cloud Security Alliance 2023:20)
 
-For example, committing secrets to code would be an extreme "deployment stage" threat and a cloud provider wouldn't be liable for this type of mistake.
+Committing secrets to code would be a "deployment stage" threat and a cloud provider wouldn't be liable for this type of mistake.
 
 ## Endpoint Inventory
 
 ![Initial Application Diagram](./images/initial-state-final.drawio.png)
 Figure 4: Initial Application Diagram
 
-Our application consists of serverless functions, an event-driven chain and PostgreSQL as a data store/state record.  
+Our application consists of serverless functions, an event-driven chain and PostgreSQL data store/state record.  
 
 ### AWS RDS (PostgreSQL) db connection
-The first serverless function `postgres_dataload` goes and gets the latest electronic tenders and stores them in the database. 
+The first serverless function `postgres_dataload` gets the latest electronic tenders and stores them in the database. 
 
-The database is updated by subsequent lambda functions as the tender information passes through the ML/AI pipeline. 
+The database is updated by subsequent functions as the tender information passes through the ML/AI pipeline. 
 
-It also records each Lambda step to help debugging issues with the data manipulation pipeline. 
+It also records each Lambda step to help debugging the data manipulation pipeline. 
 
-In future it could also be used as a source for further ML improvements via reinforcement learning or to expand the amount of model training data.
+In future it could be used to drive further ML improvements via reinforcement learning or to expand the amount of model training data.
 
 It's currently open to the internet for ease of development from Windows machine via the PgAdmin4 PostgreSQL client (www.pgadmin.org, n.d.). 
 
@@ -105,7 +105,7 @@ Assessing the CI/CD/GitHub pipeline as **Partially Achieved** is possibly harsh.
 
 There might be issues within the resources deployed by Terraform, especially within their configuration, as well as the Rust code or the crates (libraries) the Lambdas are built from.
 
-We can also make some architectural choices to mitigate issues further and address "platform risk" (www.startupillustrated.com, n.d.) which is the over-reliance on a particular platform or service for something to work.
+We can also make some architectural changes to mitigate issues further and address "platform risk" (www.startupillustrated.com, n.d.) which is the over-reliance on a particular platform or service for something to work.
 
 
 
