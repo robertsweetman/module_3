@@ -6,7 +6,9 @@ Amazon.com. (2025). RDS for PostgreSQL database log files - Amazon Relational Da
 
 Amazon Web Services, Inc. (n.d.). Amazon Aurora Pricing | MySQL PostgreSQL Relational Database | Amazon Web Services. [online] Available at: https://aws.amazon.com/rds/aurora/pricing/.
 
-‌‌‌‌Arstechnica.com. (2025). This content is blocked! [online] Available at: https://arstechnica.com/tech-policy/2025/08/chatgpt-users-shocked-to-learn-their-chats-were-in-google-search-results/.
+AWS (2025). EC2 Instance Pricing – Amazon Web Services (AWS). [online] Amazon Web Services, Inc. Available at: https://aws.amazon.com/ec2/pricing/on-demand/.
+
+‌‌‌‌‌Arstechnica.com. (2025). This content is blocked! [online] Available at: https://arstechnica.com/tech-policy/2025/08/chatgpt-users-shocked-to-learn-their-chats-were-in-google-search-results/.
 
 AWS (n.d.). Using multi-factor authentication (MFA) in AWS - AWS Identity and Access Management. [online] docs.aws.amazon.com. Available at: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa.html.
 
@@ -55,13 +57,3 @@ Trivy.dev. (2025). Trivy - Terraform. [online] Available at: https://trivy.dev/d
 ‌Winder, D. (2025). Massive Surge In Ransomware Attacks—AI And 2FA Bypass In Crosshairs. [online] Forbes. Available at: https://www.forbes.com/sites/daveywinder/2025/03/25/massive-surge-in-ransomware-attacks-ai-and-2fa-bypass-to-blame/.
 
 Winder, D. (2025). New AI Attack Compromises Google Chrome’s Password Manager. [online] Forbes. Available at: https://www.forbes.com/sites/daveywinder/2025/03/21/google-chrome-passwords-alert-beware-the-rise-of-the-ai-infostealers/.
-
-### Framework References
-
-**NCSC Cyber Assessment Framework (CAF)**: UK's national cybersecurity framework providing 14 outcomes across 4 objectives, specifically designed for UK organisations to assess and improve their cybersecurity posture.
-
-**ISO 27001:2022**: International standard for Information Security Management Systems (ISMS), widely adopted across the EU and provides systematic approach to managing sensitive information.
-
-**GDPR (General Data Protection Regulation)**: EU regulation that directly impacts this system due to processing of tender data which may contain personal information. Critical for Claude API data transfers to US.
-
-**OWASP LLM Top 10 (2023)**: Specifically addresses risks in AI/ML applications, crucial for the Claude API security assessment.

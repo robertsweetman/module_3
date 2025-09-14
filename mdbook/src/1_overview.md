@@ -38,11 +38,7 @@ More than a third of organizations with AI workloads (34%) have already experien
 ```
 
 So while it's clear that AI can contribute to profitability and deliver value it's certainly not all roses.
-<!--
-Emphasize the strategic importance of cybersecurity in addressing the business implications of emerging technologies like cloud computing, IoT and AI. 
 
-Highlight how these technologies, while enhancing capabilities, also introduce new vulnerabilities
--->
 
 ## Role and Project Impact
 
